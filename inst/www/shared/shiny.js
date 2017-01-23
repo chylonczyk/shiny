@@ -3318,10 +3318,19 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       return $(scope).find('a.shiny-download-link');
     },
     renderValue: function renderValue(el, data) {
-      $(el).attr('href', data);
+      var $el = $(el);
+      $el.attr('href', data);
     }
   });
   outputBindings.register(downloadLinkOutputBinding, 'shiny.downloadLink');
+
+  // Trigger shiny:filedownload event whenever
+  $(document).on('click.shinyDownloadLink', 'a.shiny-download-link', function (e) {
+    var evt = jQuery.Event('shiny:filedownload');
+    evt.name = this.id;
+    evt.url = this.href;
+    $(document).trigger(evt);
+  });
 
   //---------------------------------------------------------------------
   // Source file: ../srcjs/output_binding_datatable.js
