@@ -763,7 +763,7 @@ ShinySession <- R6Class(
           sessionId = self$token
         )
       )
-      if (!is.null(self$user)) self$sendUserInfo(user = self$user)
+      if (!is.null(self$user)) self$sendUserInfo(userId = self$user)
     },
     rootScope = function() {
       self
@@ -1406,8 +1406,8 @@ ShinySession <- R6Class(
         )
       )
     },
-    sendUserInfo = function(user) {
-      private$sendMessage(user = user)
+    sendUserInfo = function(userId) {
+      private$sendMessage(user = list(userId = userId))
     },
     updateQueryString = function(queryString) {
       private$sendMessage(updateQueryString = list(queryString = queryString))
