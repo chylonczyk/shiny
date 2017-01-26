@@ -695,7 +695,6 @@ var ShinyApp = function() {
   });
 
   addMessageHandler('user', function(message) {
-    console.log(message.userId);
     exports.user = message.userId;
   });
   // Progress reporting ====================================================
